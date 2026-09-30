@@ -24,6 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: main # queued runs start from the latest data, not from the triggering commit
           fetch-depth: 1
 
       - name: Run checks
@@ -42,8 +43,9 @@ jobs:
           git commit -q -m "status: ${REASON}"
           for i in 1 2 3; do
             if git push -q origin HEAD:main; then exit 0; fi
-            # someone (the panel) pushed incidents.json meanwhile; our files never conflict with it
-            git pull -q --rebase origin main || { git rebase --abort; exit 1; }
+            # the panel may have pushed incidents.json meanwhile; for our data files the fresh
+            # measurement wins (-X theirs keeps the commit being replayed)
+            git pull -q --rebase -X theirs origin main || { git rebase --abort; exit 1; }
           done
           exit 1
 
