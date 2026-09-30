@@ -12,6 +12,7 @@ Prints `commit=true|false` to $GITHUB_OUTPUT.
 """
 from __future__ import annotations
 
+import http.client
 import imaplib
 import json
 import os
@@ -100,6 +101,9 @@ def http_get(url: str, cfg: dict) -> dict:
         return {"error": "connect"}
     except TimeoutError:
         return {"error": "timeout"}
+    except http.client.HTTPException:
+        # malformed answer: BadStatusLine, IncompleteRead, too many headers, ...
+        return {"error": "protocol"}
     except (OSError, ValueError):
         return {"error": "connect"}
 
@@ -121,26 +125,43 @@ def check_http(check: dict, cfg: dict) -> dict:
     return classify_http(r, check.get("ok", [200]), check.get("maintenance", []), cfg)
 
 
+def _has_retry_after(r: dict) -> bool:
+    return any(k.lower() == "retry-after" for k in r.get("headers", {}))
+
+
 def check_health(check: dict, cfg: dict) -> dict:
-    """`GET /api/health` returning {"ok": bool, ...}. Falls back to the home page
-    while the endpoint is not deployed yet (404 or a non-JSON answer)."""
+    """`GET /api/health` returning {"ok": true}.
+
+    Strict rules for the endpoint itself:
+      200 with {"ok": true}        -> up (degraded when slow)
+      503 with a Retry-After header -> maintenance
+      anything else (timeout, 5xx, {"ok": false}, ...) -> down
+
+    `fallback` (optional) covers only the time before /api/health is deployed: when the
+    endpoint answers 404, the home page is checked instead and only a 200 counts as up.
+    It never masks an outage: errors, timeouts and 5xx from /api/health stay "down".
+    Remove `fallback` from config/services.json once /api/health is live in production.
+    """
     r = http_get(check["url"], cfg)
-    if "error" not in r:
+    if "error" in r:
+        return {"state": "down", "detail": r["error"]}
+    code, ms = r["code"], r["ms"]
+    if code == 200:
         data = None
         try:
             data = json.loads(r["body"].decode("utf-8"))
         except (UnicodeDecodeError, json.JSONDecodeError):
             pass
-        if isinstance(data, dict) and "ok" in data:
-            if r["code"] == 200 and data.get("ok") is True:
-                state = "degraded" if r["ms"] > cfg["slowMs"] else "up"
-                return {"state": state, "code": 200, "ms": r["ms"], "detail": "slow" if state == "degraded" else None}
-            return {"state": "down", "code": r["code"], "ms": r["ms"], "detail": "health"}
-    # not deployed yet, or answered by something else (maintenance page, proxy error)
+        if isinstance(data, dict) and data.get("ok") is True:
+            state = "degraded" if ms > cfg["slowMs"] else "up"
+            return {"state": state, "code": 200, "ms": ms, "detail": "slow" if state == "degraded" else None}
+        return {"state": "down", "code": code, "ms": ms, "detail": "health"}
+    if code == 503 and _has_retry_after(r):
+        return {"state": "maintenance", "code": code, "ms": ms, "detail": "maintenance"}
     fb = check.get("fallback")
-    if not fb:
-        return classify_http(r, [200], [], cfg)
-    return check_http(fb, cfg)
+    if code == 404 and fb:
+        return classify_http(http_get(fb["url"], cfg), [200], [], cfg)
+    return {"state": "down", "code": code, "ms": ms, "detail": f"http_{code}"}
 
 
 def _cert_days(cert: dict | None) -> int | None:
@@ -194,12 +215,20 @@ def check_mail(check: dict, cfg: dict) -> dict:
 CHECKS = {"http": check_http, "health": check_health, "mail": check_mail}
 
 
+def _safe_check(svc: dict, cfg: dict) -> dict:
+    """Run one check; a bug or an unexpected exception marks only this service as down."""
+    try:
+        return CHECKS[svc["check"]["type"]](svc["check"], cfg)
+    except Exception as e:  # noqa: BLE001 - one broken service must not stop the run
+        WARNINGS.append(f"check for {svc.get('id')} failed: {type(e).__name__}: {e}")
+        return {"state": "down", "detail": "check_error"}
+
+
 def run_service(svc: dict, cfg: dict) -> dict:
-    fn = CHECKS[svc["check"]["type"]]
-    res = fn(svc["check"], cfg)
+    res = _safe_check(svc, cfg)
     if res["state"] == "down":
         time.sleep(RETRY_DELAY)  # one retry, so a single dropped packet is not an outage
-        res = fn(svc["check"], cfg)
+        res = _safe_check(svc, cfg)
     if svc.get("prelaunch") and res["state"] == "down":
         res = {"state": "prelaunch", "detail": res.get("detail")}
     return res

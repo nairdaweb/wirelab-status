@@ -12,7 +12,7 @@ Source of [status.wirelab.pl](https://status.wirelab.pl): a static status page p
 
 | Service | Check | Up when |
 |---|---|---|
-| wirelab.pl | `GET /api/health` → `{"ok": true}`; until it exists, falls back to `GET /` | 200; `503` with `Retry-After` = maintenance |
+| wirelab.pl | `GET /api/health` → `{"ok": true}`; only while it answers 404 (not deployed), falls back to `GET /` (200 = up, anything else = down) | 200 = up; `503` with `Retry-After` = maintenance; anything else = down |
 | Academy | `GET https://akademia.wirelab.pl/` | 200 |
 | Blog | `GET https://blog.wirelab.pl/` | 200 |
 | Forum | `GET https://forum.wirelab.pl/ping` | 200; while `"prelaunch": true` a failure shows as "before launch", not as an outage |

@@ -66,7 +66,7 @@ Strona statusu pokazuje stan publicznie, a UptimeRobot budzi Cię, gdy coś padn
 ## 6. Na co uważać
 
 - **Forum przed otwarciem**: w `config/services.json` forum ma `"prelaunch": true`, więc jego niedostępność pokazuje się jako „Przed otwarciem”, a nie awaria. Po otwarciu forum zmień na `false`.
-- **`/api/health`**: dopóki nie jest wdrożony, sprawdzamy stronę główną. Tryb budowy z odpowiedzią 503 i nagłówkiem `Retry-After` liczy się jako prace serwisowe, nie awaria. Po wdrożeniu nic nie trzeba zmieniać.
+- **`/api/health`**: 200 z `{"ok": true}` = działa; 503 z nagłówkiem `Retry-After` = prace serwisowe; wszystko inne (timeout, 5xx, `{"ok": false}`) = awaria. Dopóki endpoint odpowiada 404 (niewdrożony), sprawdzamy stronę główną i tylko 200 liczy się jako „działa”. Po wdrożeniu `/api/health` usuń `fallback` z `config/services.json` — wtedy 404 też jest awarią.
 - **60 dni bez aktywności**: GitHub wyłącza zaplanowane workflow w publicznym repo bez aktywności. Cogodzinne commity wyników zwykle temu zapobiegają. Jeśli dostaniesz maila „scheduled workflow disabled”, wejdź w **Actions → check → Enable workflow**.
 - **Czerwony przebieg w Actions** przy poprawnie działających usługach oznacza zwykle błąd w `data/incidents.json`. Szczegóły są w logu kroku „Validate incidents.json”.
 - **Prywatność**: GitHub (USA) widzi adresy IP odwiedzających stronę statusu. Dlatego w polityce prywatności potrzebny jest punkt o przekazaniu poza EOG (GitHub, Data Privacy Framework), dotyczący tylko odwiedzin status.wirelab.pl. Strona nie ustawia ciasteczek; zapamiętuje tylko język i motyw w przeglądarce (localStorage).

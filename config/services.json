@@ -11,7 +11,7 @@
       "check": {
         "type": "health",
         "url": "https://wirelab.pl/api/health",
-        "fallback": { "url": "https://wirelab.pl/", "ok": [200], "maintenance": [503] }
+        "fallback": { "url": "https://wirelab.pl/" }
       }
     },
     {
