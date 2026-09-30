@@ -1,0 +1,107 @@
+{
+ "version": 1,
+ "checkedAt": "2026-09-30T15:15:05Z",
+ "accountedUntil": "2026-09-30T15:15:05Z",
+ "services": [
+  {
+   "id": "web",
+   "name": {
+    "pl": "wirelab.pl",
+    "en": "wirelab.pl"
+   },
+   "desc": {
+    "pl": "Strona firmowa i panel klienta",
+    "en": "Company website and client area"
+   },
+   "link": "https://wirelab.pl/",
+   "prelaunch": false,
+   "state": "up",
+   "since": "2026-09-30T15:15:02Z",
+   "ms": 376,
+   "code": 200
+  },
+  {
+   "id": "academy",
+   "name": {
+    "pl": "Akademia",
+    "en": "Academy"
+   },
+   "desc": {
+    "pl": "Kursy online, akademia.wirelab.pl",
+    "en": "Online courses, akademia.wirelab.pl"
+   },
+   "link": "https://akademia.wirelab.pl/",
+   "prelaunch": false,
+   "state": "up",
+   "since": "2026-09-30T15:15:02Z",
+   "ms": 281,
+   "code": 200
+  },
+  {
+   "id": "blog",
+   "name": {
+    "pl": "Blog",
+    "en": "Blog"
+   },
+   "desc": {
+    "pl": "blog.wirelab.pl",
+    "en": "blog.wirelab.pl"
+   },
+   "link": "https://blog.wirelab.pl/",
+   "prelaunch": false,
+   "state": "up",
+   "since": "2026-09-30T15:15:02Z",
+   "ms": 301,
+   "code": 200
+  },
+  {
+   "id": "forum",
+   "name": {
+    "pl": "Forum",
+    "en": "Forum"
+   },
+   "desc": {
+    "pl": "forum.wirelab.pl",
+    "en": "forum.wirelab.pl"
+   },
+   "link": "https://forum.wirelab.pl/",
+   "prelaunch": true,
+   "state": "up",
+   "since": "2026-09-30T15:15:02Z",
+   "ms": 202,
+   "code": 200
+  },
+  {
+   "id": "docs",
+   "name": {
+    "pl": "Dokumentacja",
+    "en": "Documentation"
+   },
+   "desc": {
+    "pl": "docs.wirelab.pl (dostęp dla klientów)",
+    "en": "docs.wirelab.pl (client access)"
+   },
+   "link": "https://docs.wirelab.pl/",
+   "prelaunch": false,
+   "state": "up",
+   "since": "2026-09-30T15:15:02Z",
+   "ms": 118,
+   "code": 401
+  },
+  {
+   "id": "mail",
+   "name": {
+    "pl": "Poczta",
+    "en": "Email"
+   },
+   "desc": {
+    "pl": "Wysyłka (SMTP) i skrzynki (IMAP)",
+    "en": "Sending (SMTP) and mailboxes (IMAP)"
+   },
+   "prelaunch": false,
+   "state": "up",
+   "since": "2026-09-30T15:15:02Z",
+   "ms": 521
+  }
+ ]
+}

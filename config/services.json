@@ -1,0 +1,60 @@
+{
+  "userAgent": "wirelab-status/1.0 (+https://status.wirelab.pl)",
+  "timeoutSeconds": 10,
+  "slowMs": 5000,
+  "services": [
+    {
+      "id": "web",
+      "name": { "pl": "wirelab.pl", "en": "wirelab.pl" },
+      "desc": { "pl": "Strona firmowa i panel klienta", "en": "Company website and client area" },
+      "link": "https://wirelab.pl/",
+      "check": {
+        "type": "health",
+        "url": "https://wirelab.pl/api/health",
+        "fallback": { "url": "https://wirelab.pl/", "ok": [200], "maintenance": [503] }
+      }
+    },
+    {
+      "id": "academy",
+      "name": { "pl": "Akademia", "en": "Academy" },
+      "desc": { "pl": "Kursy online, akademia.wirelab.pl", "en": "Online courses, akademia.wirelab.pl" },
+      "link": "https://akademia.wirelab.pl/",
+      "check": { "type": "http", "url": "https://akademia.wirelab.pl/", "ok": [200] }
+    },
+    {
+      "id": "blog",
+      "name": { "pl": "Blog", "en": "Blog" },
+      "desc": { "pl": "blog.wirelab.pl", "en": "blog.wirelab.pl" },
+      "link": "https://blog.wirelab.pl/",
+      "check": { "type": "http", "url": "https://blog.wirelab.pl/", "ok": [200] }
+    },
+    {
+      "id": "forum",
+      "name": { "pl": "Forum", "en": "Forum" },
+      "desc": { "pl": "forum.wirelab.pl", "en": "forum.wirelab.pl" },
+      "link": "https://forum.wirelab.pl/",
+      "prelaunch": true,
+      "check": { "type": "http", "url": "https://forum.wirelab.pl/ping", "ok": [200] }
+    },
+    {
+      "id": "docs",
+      "name": { "pl": "Dokumentacja", "en": "Documentation" },
+      "desc": { "pl": "docs.wirelab.pl (dostęp dla klientów)", "en": "docs.wirelab.pl (client access)" },
+      "link": "https://docs.wirelab.pl/",
+      "check": { "type": "http", "url": "https://docs.wirelab.pl/", "ok": [200, 401] }
+    },
+    {
+      "id": "mail",
+      "name": { "pl": "Poczta", "en": "Email" },
+      "desc": { "pl": "Wysyłka (SMTP) i skrzynki (IMAP)", "en": "Sending (SMTP) and mailboxes (IMAP)" },
+      "check": {
+        "type": "mail",
+        "host": "mail.wirelab.pl",
+        "ports": [
+          { "port": 587, "mode": "starttls-smtp", "label": "SMTP 587" },
+          { "port": 993, "mode": "tls-imap", "label": "IMAPS 993" }
+        ]
+      }
+    }
+  ]
+}

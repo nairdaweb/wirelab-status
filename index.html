@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Status wirelab</title>
+<meta name="description" content="Aktualny stan usług wirelab: strona, Akademia, blog, forum, dokumentacja i poczta. Current status of wirelab services.">
+<meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a1220" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/sora-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/prefs.js"></script>
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="skip">Przejdź do treści</a>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="https://wirelab.pl/" aria-label="wirelab.pl">
+      <img class="logo logo-light" src="assets/img/wirelab-logo-on-light.svg" alt="wirelab" width="122" height="24">
+      <img class="logo logo-dark" src="assets/img/wirelab-logo-on-dark.svg" alt="wirelab" width="122" height="24">
+      <span class="brand-tag" data-i18n="brandTag">status</span>
+    </a>
+    <div class="tools">
+      <button type="button" class="tool" id="lang-btn" aria-label="Switch to English"><span id="lang-label">EN</span></button>
+      <button type="button" class="tool" id="theme-btn" aria-label="Zmień motyw">
+        <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+        <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <section class="overall" id="overall" data-state="loading" aria-live="polite">
+    <span class="pulse" aria-hidden="true"></span>
+    <div>
+      <h1 id="overall-title" data-i18n="loading">Sprawdzam stan usług…</h1>
+      <p class="checked"><span data-i18n="lastChecked">Ostatnio sprawdzono</span>: <time id="checked-at">–</time></p>
+      <p class="stale" id="stale" hidden data-i18n="stale">Dane mogą być nieaktualne. Automat sprawdzający się spóźnia.</p>
+    </div>
+  </section>
+
+  <noscript><p class="note">Ta strona potrzebuje JavaScriptu, żeby pokazać wyniki. Surowe dane: <a href="data/status.json">status.json</a>, <a href="data/incidents.json">incidents.json</a>.</p></noscript>
+
+  <section id="active" class="block" hidden aria-labelledby="active-h">
+    <h2 id="active-h" data-i18n="activeIncidents">Aktualne zdarzenia</h2>
+    <div id="active-list"></div>
+  </section>
+
+  <section class="block" aria-labelledby="services-h">
+    <div class="block-head">
+      <h2 id="services-h" data-i18n="services">Usługi</h2>
+      <p class="legend" aria-hidden="true">
+        <span><i class="sw sw-ok"></i><span data-i18n="lgOk">działa</span></span>
+        <span><i class="sw sw-minor"></i><span data-i18n="lgMinor">utrudnienia</span></span>
+        <span><i class="sw sw-major"></i><span data-i18n="lgMajor">awaria</span></span>
+        <span><i class="sw sw-none"></i><span data-i18n="lgNone">brak danych</span></span>
+      </p>
+    </div>
+    <ul class="services" id="services"></ul>
+  </section>
+
+  <section class="block" aria-labelledby="history-h">
+    <h2 id="history-h" data-i18n="history">Historia zdarzeń</h2>
+    <div id="history-list"><p class="empty" data-i18n="noHistory">Brak zgłoszonych zdarzeń w ostatnich 90 dniach.</p></div>
+    <button type="button" class="more" id="history-more" hidden data-i18n="showMore">Pokaż starsze</button>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p data-i18n="footMonitor">Sprawdzamy usługi co około 5 minut z zewnątrz, niezależnie od naszych serwerów. Czasy podajemy w Twojej strefie, a paski dni według UTC.</p>
+    <p><a href="https://wirelab.pl/" data-i18n="footBack">Wróć na wirelab.pl</a> · <a href="data/status.json">JSON</a></p>
+  </div>
+</footer>
+</body>
+</html>
