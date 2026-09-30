@@ -59,7 +59,6 @@ Strona statusu pokazuje stan publicznie, a UptimeRobot budzi Cię, gdy coś padn
    | HTTP(s) | Docs | `https://docs.wirelab.pl/` | w „Advanced” dopuść kod 401 jako poprawny albo wybierz typ Port 443 |
    | Port | Poczta SMTP | `mail.wirelab.pl`, port 587 | |
    | Port | Poczta IMAP | `mail.wirelab.pl`, port 993 | |
-   | HTTP(s) | dev (prywatnie) | `https://dev.wirelab.pl/` | opcjonalnie; tylko alert, nie trafia na stronę statusu |
 
 4. W monitorach HTTP(s) włącz **SSL expiry reminders** (lub w ustawieniach konta: powiadomienie 14 dni przed wygaśnięciem certyfikatu).
 5. Nie twórz publicznej strony statusu w UptimeRobot; publiczna jest status.wirelab.pl.
