@@ -10,8 +10,7 @@
       "link": "https://wirelab.pl/",
       "check": {
         "type": "health",
-        "url": "https://wirelab.pl/api/health",
-        "fallback": { "url": "https://wirelab.pl/" }
+        "url": "https://wirelab.pl/api/health"
       }
     },
     {
