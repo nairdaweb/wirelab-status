@@ -1,7 +1,7 @@
 {
  "version": 1,
- "checkedAt": "2026-10-10T14:45:03Z",
- "accountedUntil": "2026-10-10T14:45:03Z",
+ "checkedAt": "2026-10-10T18:54:50Z",
+ "accountedUntil": "2026-10-10T18:54:50Z",
  "services": [
   {
    "id": "web",
@@ -17,7 +17,7 @@
    "prelaunch": false,
    "state": "up",
    "since": "2026-09-30T15:15:02Z",
-   "ms": 929,
+   "ms": 528,
    "code": 200
   },
   {
@@ -34,7 +34,7 @@
    "prelaunch": false,
    "state": "up",
    "since": "2026-09-30T15:15:02Z",
-   "ms": 1126,
+   "ms": 839,
    "code": 200
   },
   {
@@ -51,7 +51,7 @@
    "prelaunch": false,
    "state": "up",
    "since": "2026-09-30T15:15:02Z",
-   "ms": 1117,
+   "ms": 1052,
    "code": 200
   },
   {
@@ -68,7 +68,7 @@
    "prelaunch": true,
    "state": "up",
    "since": "2026-09-30T15:15:02Z",
-   "ms": 633,
+   "ms": 456,
    "code": 200
   },
   {
@@ -85,7 +85,7 @@
    "prelaunch": false,
    "state": "up",
    "since": "2026-09-30T15:15:02Z",
-   "ms": 633,
+   "ms": 416,
    "code": 401
   },
   {
@@ -101,7 +101,7 @@
    "prelaunch": false,
    "state": "up",
    "since": "2026-09-30T15:15:02Z",
-   "ms": 1478
+   "ms": 1040
   }
  ]
 }
