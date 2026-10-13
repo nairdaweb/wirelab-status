@@ -1,7 +1,7 @@
 {
  "version": 1,
- "checkedAt": "2026-10-13T18:27:27Z",
- "accountedUntil": "2026-10-13T18:27:27Z",
+ "checkedAt": "2026-10-13T23:04:21Z",
+ "accountedUntil": "2026-10-13T23:04:21Z",
  "services": [
   {
    "id": "web",
@@ -15,10 +15,9 @@
    },
    "link": "https://wirelab.pl/",
    "prelaunch": false,
-   "state": "up",
-   "since": "2026-09-30T15:15:02Z",
-   "ms": 768,
-   "code": 200
+   "state": "down",
+   "since": "2026-10-13T23:01:27Z",
+   "detail": "timeout"
   },
   {
    "id": "academy",
@@ -32,10 +31,9 @@
    },
    "link": "https://akademia.wirelab.pl/",
    "prelaunch": false,
-   "state": "up",
-   "since": "2026-09-30T15:15:02Z",
-   "ms": 1280,
-   "code": 200
+   "state": "down",
+   "since": "2026-10-13T23:01:27Z",
+   "detail": "timeout"
   },
   {
    "id": "blog",
@@ -49,10 +47,9 @@
    },
    "link": "https://blog.wirelab.pl/",
    "prelaunch": false,
-   "state": "up",
-   "since": "2026-09-30T15:15:02Z",
-   "ms": 1466,
-   "code": 200
+   "state": "down",
+   "since": "2026-10-13T23:01:27Z",
+   "detail": "timeout"
   },
   {
    "id": "forum",
@@ -66,10 +63,9 @@
    },
    "link": "https://forum.wirelab.pl/",
    "prelaunch": true,
-   "state": "up",
-   "since": "2026-09-30T15:15:02Z",
-   "ms": 732,
-   "code": 200
+   "state": "prelaunch",
+   "since": "2026-10-13T23:01:27Z",
+   "detail": "timeout"
   },
   {
    "id": "docs",
@@ -83,10 +79,9 @@
    },
    "link": "https://docs.wirelab.pl/",
    "prelaunch": false,
-   "state": "up",
-   "since": "2026-09-30T15:15:02Z",
-   "ms": 592,
-   "code": 401
+   "state": "down",
+   "since": "2026-10-13T23:01:27Z",
+   "detail": "timeout"
   },
   {
    "id": "mail",
@@ -99,9 +94,13 @@
     "en": "Sending (SMTP) and mailboxes (IMAP)"
    },
    "prelaunch": false,
-   "state": "up",
-   "since": "2026-09-30T15:15:02Z",
-   "ms": 1660
+   "state": "down",
+   "since": "2026-10-13T23:01:27Z",
+   "detail": "connect",
+   "failed": [
+    "SMTP 587",
+    "IMAPS 993"
+   ]
   }
  ]
 }
