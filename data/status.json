@@ -1,7 +1,7 @@
 {
  "version": 1,
- "checkedAt": "2026-11-17T03:40:01Z",
- "accountedUntil": "2026-11-17T03:40:01Z",
+ "checkedAt": "2026-11-17T12:30:56Z",
+ "accountedUntil": "2026-11-17T12:30:56Z",
  "services": [
   {
    "id": "web",
@@ -15,10 +15,9 @@
    },
    "link": "https://wirelab.pl/",
    "prelaunch": false,
-   "state": "up",
-   "since": "2026-10-14T20:56:13Z",
-   "ms": 680,
-   "code": 200
+   "state": "down",
+   "since": "2026-11-17T12:28:57Z",
+   "detail": "timeout"
   },
   {
    "id": "academy",
@@ -32,10 +31,9 @@
    },
    "link": "https://akademia.wirelab.pl/",
    "prelaunch": false,
-   "state": "up",
-   "since": "2026-10-14T20:56:13Z",
-   "ms": 1321,
-   "code": 200
+   "state": "down",
+   "since": "2026-11-17T12:28:57Z",
+   "detail": "timeout"
   },
   {
    "id": "blog",
@@ -49,10 +47,9 @@
    },
    "link": "https://blog.wirelab.pl/",
    "prelaunch": false,
-   "state": "up",
-   "since": "2026-10-14T20:56:13Z",
-   "ms": 1554,
-   "code": 200
+   "state": "down",
+   "since": "2026-11-17T12:28:57Z",
+   "detail": "timeout"
   },
   {
    "id": "forum",
@@ -66,10 +63,9 @@
    },
    "link": "https://forum.wirelab.pl/",
    "prelaunch": true,
-   "state": "up",
-   "since": "2026-10-14T20:56:13Z",
-   "ms": 677,
-   "code": 200
+   "state": "prelaunch",
+   "since": "2026-11-17T12:28:57Z",
+   "detail": "timeout"
   },
   {
    "id": "docs",
@@ -85,7 +81,7 @@
    "prelaunch": false,
    "state": "up",
    "since": "2026-10-14T20:56:13Z",
-   "ms": 630,
+   "ms": 491,
    "code": 401
   },
   {
@@ -101,7 +97,7 @@
    "prelaunch": false,
    "state": "up",
    "since": "2026-10-14T20:56:13Z",
-   "ms": 1822
+   "ms": 1216
   }
  ]
 }
